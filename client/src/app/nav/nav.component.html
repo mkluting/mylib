@@ -1,0 +1,15 @@
+<div class="nav-wrapper">
+    <img class="logo" src="/assets/book-open-outline-filled.png" [ngStyle.xs]='{"height.px": 45}'>
+    <a class="brand-logo" [ngStyle.xs]="{'font-size.px': 20}">{{ appName }}</a>
+    <button (click)="logout()" *ngIf="loggedIn" mat-button class="logout-btn btn btn-primary"><i class="material-icons">exit_to_app</i> Logout</button>
+</div>
+<nav mat-tab-nav-bar>
+    <a mat-tab-link
+        *ngFor="let routeLink of routeLinks"
+       [routerLink]="routeLink.link"
+       routerLinkActive #rla="routerLinkActive"
+       [active]="rla.isActive"
+    >
+        <i class="material-icons">{{ routeLink.icon }}</i><span [fxHide.xs]="true">{{ routeLink.label }}</span>
+    </a>
+</nav>

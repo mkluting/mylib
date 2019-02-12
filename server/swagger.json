@@ -1,0 +1,553 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MyLib API Endpoints",
+    "description": "Backend API for MyLib",
+    "contact": {
+      "name": "Matt Kluting",
+      "email": "mkluting@gmail.com"
+    },
+    "version": "v0.1"
+  },
+  "paths": {
+    "/api/books": {
+      "get": {
+        "tags": ["Books"],
+        "operationId": "getAllBooks",
+        "summary": "Gets All Books from Database",
+        "description": "Gets all book objects from the database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "[\r\n    {\r\n        id: 1,\r\n        title: \"Ex-Heroes\",\r\n        author_first: \"Peter\",\r\n        author_last: \"Clines\",\r\n        format: \"Hardcover\",\r\n        series: \"Ex-Heroes\",\r\n        series_num: \"1\",\r\n        owner: \"Matt\",\r\n        isbn_13: \"978-0804136570\",\r\n        isbn_10: \"0804136572\"\r\n    },\r\n    {\r\n        id: 2,\r\n        title: \"Ex-Patriots\",\r\n        author_first: \"Peter\",\r\n        author_last: \"Clines\",\r\n        format: \"Paperback\",\r\n        series: \"Ex-Heroes\",\r\n        series_num: \"2\",\r\n        owner: \"Matt\",\r\n        isbn_13: \"978-0804136594\",\r\n        isbn_10: \"0804136599\"\r\n},\r\n{\r\n        id: 3,\r\n        title: \"Ex-Communication\",\r\n        author_first: \"Peter\",\r\n        author_last: \"Clines\",\r\n        format: \"Paperback\",\r\n        series: \"Ex-Heroes\",\r\n        series_num: \"3\",\r\n        owner: \"Matt\",\r\n        isbn_13: \"978-0385346825\",\r\n        isbn_10: \"0385346824\"\r\n    }\r\n]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Books"],
+        "operationId": "createBook",
+        "summary": "Creates a book in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of book",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "author_first",
+            "in": "formData",
+            "description": "First name of Author",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "author_last",
+            "in": "formData",
+            "description": "Last name of Author",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "formData",
+            "description": "Binding Type of Book",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "series",
+            "in": "formData",
+            "description": "Series Name of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series_num",
+            "in": "formData",
+            "description": "Series Order of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isbn_13",
+            "in": "formData",
+            "description": "13 Digit ISBN of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isbn_10",
+            "in": "formData",
+            "description": "10 Digit ISBN of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "formData",
+            "description": "Name of Owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+
+        }
+      }
+    },
+    "/api/books/:id": {
+      "get": {
+        "tags": ["Books"],
+        "operationId": "getBookById",
+        "summary": "Get Book By ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Book from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "[\r\n    {\r\n        \"id\": 1,\r\n        \"title\": \"Ex-Heroes\",\r\n        \"author_first\": \"Peter\",\r\n        \"author_last\": \"Clines\",\r\n        \"format\": \"Hardcover\",\r\n        \"series\": \"Ex-Heroes\",\r\n        \"series_num\": \"1\",\r\n        \"owner\": \"Matt\",\r\n        \"isbn_13\": \"978-0804136570\",\r\n        \"isbn_10\": \"0804136572\"\r\n    }\r\n]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Books"],
+        "operationId": "updateBook",
+        "summary": "Updates a book with the given ID in the Database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Book from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of book",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "author_first",
+            "in": "formData",
+            "description": "First name of Author",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "author_last",
+            "in": "formData",
+            "description": "Last name of Author",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "formData",
+            "description": "Binding Type of Book",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "series",
+            "in": "formData",
+            "description": "Series Name of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series_num",
+            "in": "formData",
+            "description": "Series Order of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isbn_13",
+            "in": "formData",
+            "description": "13 Digit ISBN of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isbn_10",
+            "in": "formData",
+            "description": "10 Digit ISBN of Book",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "formData",
+            "description": "Name of Owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Books"],
+        "operationId": "deleteBook",
+        "summary": "Delete a book with given ID from the Database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Book from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+        }
+      }
+    },
+    "/api/movies": {
+      "get": {
+        "tags": ["Movies"],
+        "operationId": "getAllMovies",
+        "summary": "Gets All Movies from Database",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "[\r\n    {\r\n        \"id\": 38,\r\n        \"title\": \"Iron Man\",\r\n        \"type\": \"Blu-Ray\",\r\n        \"director\": \"Jon Favreau\",\r\n        \"series\": \"Marvel\",\r\n        \"series_num\": \"1\",\r\n        \"owner\": \"Matt\"\r\n    },\r\n    {\r\n        \"id\": 37,\r\n        \"title\": \"Black Panther\",\r\n        \"type\": \"Blu-Ray\",\r\n        \"director\": \"Ryan Coogler\",\r\n        \"series\": \"Marvel\",\r\n        \"series_num\": \"12\",\r\n        \"owner\": \"Matt\"\r\n    }\r\n]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Movies"],
+        "operationId": "createMovie",
+        "summary": "Creates a movie in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of Movie",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "formData",
+            "description": "Movie Format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "director",
+            "in": "formData",
+            "description": "Name of Director",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series",
+            "in": "formData",
+            "description": "Series name of Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series_num",
+            "in": "formData",
+            "description": "Series Order of Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "formData",
+            "description": "Name of Owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+
+        }
+      }
+    },
+    "/api/movies/:id": {
+      "get": {
+        "tags": ["Movies"],
+        "operationId": "getMovieById",
+        "summary": "Get Movie By ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Movie from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": "[\r\n    {\r\n        \"id\": 1,\r\n        \"title\": \"Ex-Heroes\",\r\n        \"author_first\": \"Peter\",\r\n        \"author_last\": \"Clines\",\r\n        \"format\": \"Hardcover\",\r\n        \"series\": \"Ex-Heroes\",\r\n        \"series_num\": \"1\",\r\n        \"owner\": \"Matt\",\r\n        \"isbn_13\": \"978-0804136570\",\r\n        \"isbn_10\": \"0804136572\"\r\n    }\r\n]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Movies"],
+        "operationId": "updateMovie",
+        "summary": "Updates a movie with the given ID in the Database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Movie from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "Title of Movie",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "formData",
+            "description": "Movie Format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "director",
+            "in": "formData",
+            "description": "Name of Director",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series",
+            "in": "formData",
+            "description": "Series name of Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "series_num",
+            "in": "formData",
+            "description": "Series Order of Movie",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "formData",
+            "description": "Name of Owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Movies"],
+        "operationId": "deleteMovie",
+        "summary": "Delete a movie with given ID from the Database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Movie from database",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "examples": {
+              "application/json": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Books",
+      "description": "Operations about books"
+    },
+    {
+      "name": "Movies",
+      "description": "Operations about movies"
+    }
+  ],
+  "definitions": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of Book"
+          },
+          "author_first": {
+            "type": "string",
+            "description": "First name of the author"
+          },
+          "author_last": {
+            "type": "string",
+            "description": "Last name of the author"
+          },
+          "format": {
+            "type": "string",
+            "description": "Format of the book",
+            "enum": ["Paperback", "Hardcover", "Mass Market Paperback", "eBook", "Other"]
+          },
+          "series": {
+            "type": "string",
+            "description": "Name of Book Series"
+          },
+          "series_num": {
+            "type": "string",
+            "description": "Book number in series"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Owner of Book",
+            "enum": ["Matt", "Macie"]
+          },
+          "isbn_13": {
+            "type": "string",
+            "description": "ISBN (13 character length)"
+          },
+          "isbn_10": {
+            "type": "string",
+            "description": "ISBN (10 character length)"
+          }
+        }
+      },
+    "Movie": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of Book"
+        },
+        "format": {
+          "type": "string",
+          "description": "Movie Format",
+          "enum": ["DVD", "Blu-Ray", "VHS", "Digital", "Other"]
+        },
+        "director": {
+          "type": "string",
+          "description": "Director of Movie"
+        },
+        "series": {
+          "type": "string",
+          "description": "Series of Movie"
+        },
+        "series_num": {
+          "type": "string",
+          "description": "Movie number in series"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Owner of Movie"
+        }
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ]
+}

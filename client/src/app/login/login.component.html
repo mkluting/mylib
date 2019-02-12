@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="login-header">Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <!--<form [formGroup]="form" (ngSubmit)="login()">-->
+            <!--<mat-form-field>-->
+                <!--<input required matInput type="text" class="form-control" id="email" placeholder="Email Address" formControlName="email">-->
+            <!--</mat-form-field>-->
+            <!--<mat-form-field>-->
+                <!--<input required matInput type="password" class="form-control" id="password" placeholder="Password" formControlName="password">-->
+            <!--</mat-form-field>-->
+        <!--</form>-->
+        <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+        </mat-card>
+        <mat-list>
+            <mat-list-item class="user-line" *ngFor="let user of users; last as last" (click)="login(user.username)">
+                <i class="material-icons">{{ user.avatar }}</i>
+                <div matLine>{{ user.username }}</div>
+                <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+            </mat-list-item>
+        </mat-list>
+        <mat-card-actions>
+            <!--<button type="submit" mat-button class="btn btn-primary"><i class="material-icons">account_box</i> Login</button>-->
+            <button (click)="goToCreate()" mat-button class="btn btn-primary"><i class="material-icons">person_add</i> Add User</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,27 @@
+.mat-card {
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+}
+
+.mat-card-actions {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.mat-card-header .mat-card-title {
+    line-height: 40px;
+    margin-bottom: 0;
+}
+
+.mat-card-header {
+    text-align: center;
+}
+
+.mat-card-header >>> div {
+    height: 40px;
+    width: 100%;
+}
+
+.mat-form-field {
+    display: block;
+}

@@ -1,0 +1,50 @@
+<div class="mat-elevation-z8 movies-main">
+  <div class="header">
+  </div>
+
+  <mat-form-field class="filter-input-box">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search (Title, Director, Series, Owner)">
+  </mat-form-field>
+  <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+      <mat-cell *matCellDef="let movie">
+        <a routerLink="/movie-detail/{{movie.id}}">{{ movie.title }}</a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="director">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Director </mat-header-cell>
+      <mat-cell *matCellDef="let movie">{{ movie.director}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="series">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Series </mat-header-cell>
+      <mat-cell *matCellDef="let movie">{{ movie.series}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="movie_num">
+      <mat-header-cell *matHeaderCellDef> Movie # </mat-header-cell>
+      <mat-cell *matCellDef="let movie">{{ movie.series_num}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="format">
+      <mat-header-cell *matHeaderCellDef> Format </mat-header-cell>
+      <mat-cell *matCellDef="let movie">{{ movie.format }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="owner">
+      <mat-header-cell *matHeaderCellDef> Owner </mat-header-cell>
+      <mat-cell *matCellDef="let movie">{{ movie.owner }}</mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="editMovie(row)"></mat-row>
+  </mat-table>
+  <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+  </mat-card>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <button mat-raised-button color="warn" class="add" [routerLink]="['/movie-create']"><i class="material-icons">add</i></button>
+      <mat-paginator *ngIf="!isLoading" [pageSizeOptions]="[5,10,20,50,100,250,500]" [pageIndex]="currentPage-1" [pageSize]="pageSize" [length]="movies.length" (page)="pageEvent = handlePageEvent($event);"></mat-paginator>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,13 @@
+.mat-form-field {
+  width: 100%;
+}
+.book-create-main {
+  margin-top: 10px;
+}
+.book-create-form {
+    padding: 7.5px;
+}
+.btn-separator {
+    width: 30px;
+    display: inline-block;
+}

@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="login-header">Create an Account</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="createAccount()">
+      <mat-form-field>
+        <input required matInput type="text" class="form-control" id="username" placeholder="Username" formControlName="username">
+      </mat-form-field>
+      <!--<mat-form-field>-->
+        <!--<input required matInput type="password" class="form-control" id="password" placeholder="Password" formControlName="password">-->
+      <!--</mat-form-field>-->
+      <mat-card-actions>
+        <button type="submit" mat-button class="btn btn-primary"><i class="material-icons">person_add</i> Add User</button>
+        <button (click)="goToLogin()" mat-button class="btn btn-primary"><i class="material-icons">account_box</i> Back to Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

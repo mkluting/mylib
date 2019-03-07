@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
     routeLinks: any[];
@@ -15,13 +15,13 @@ export class NavComponent implements OnInit {
     defaultRouteLinks = [
         {
             label: 'Books',
-            icon: 'book',
+            icon: 'local_library',
             link: './books',
             index: 0
         },
         {
             label: 'Movies',
-            icon: 'theaters',
+            icon: 'local_movies',
             link: './movies',
             index: 1
         }

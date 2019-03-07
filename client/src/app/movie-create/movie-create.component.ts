@@ -9,7 +9,7 @@ import { MovieService } from '../movie.service';
 @Component({
     selector: 'app-movie-create',
     templateUrl: './movie-create.component.html',
-    styleUrls: ['./movie-create.component.css']
+    styleUrls: ['./movie-create.component.scss']
 })
 export class MovieCreateComponent implements OnInit {
 

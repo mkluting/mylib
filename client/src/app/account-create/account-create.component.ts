@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-account-create',
   templateUrl: './account-create.component.html',
-  styleUrls: ['./account-create.component.css']
+  styleUrls: ['./account-create.component.scss']
 })
 export class AccountCreateComponent implements OnInit {
     form: FormGroup;
@@ -42,7 +42,7 @@ export class AccountCreateComponent implements OnInit {
 
       const val = this.form.value;
       if (val.username) {
-          this.authService.create(val.username)
+          this.authService.create(val.username, '')
               .subscribe(
                   () => {
                       console.log('User created');

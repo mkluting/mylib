@@ -41,6 +41,21 @@
       <mat-header-cell *matHeaderCellDef> ISBN </mat-header-cell>
       <mat-cell *matCellDef="let book">{{ book.isbn_13 }}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="more">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let book">
+        <a
+            [matMenuTriggerFor]="optionsMenu"
+            [matMenuTriggerData]="{bookid: book.id}"
+        ><mat-icon>more_horiz</mat-icon></a>
+      </mat-cell>
+    </ng-container>
+    <mat-menu #optionsMenu="matMenu">
+      <ng-template let-bookid="bookid" matMenuContent>
+        <a routerLink="/book-detail/{{ bookid }}" mat-menu-item>Edit</a>
+        <button (click)="deleteBook(bookid)" mat-menu-item>Delete</button>
+      </ng-template>
+    </mat-menu>
 
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>

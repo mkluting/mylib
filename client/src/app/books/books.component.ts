@@ -10,13 +10,13 @@ import {MatTableDataSource, PageEvent, Sort} from "@angular/material";
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styleUrls: ['./books.component.scss']
 })
 export class BooksComponent implements OnInit {
 
   books: Book[];
   newBook: Book;
-  columnsToDisplay = ['title', 'author', 'format', 'series', 'book_num', 'owner', 'isbn_13'];
+  columnsToDisplay = ['title', 'author', 'format', 'series', 'book_num', 'owner', 'isbn_13', 'more'];
   isLoading = true;
   pager: any;
   pagedItems: any[];
@@ -44,7 +44,7 @@ export class BooksComponent implements OnInit {
     this.setPage();
   }
 
-  setPage(){
+  setPage() {
       // get pager object from service
       this.pager = this.pagerService.getPager(this.books.length, this.currentPage, this.pageSize);
       // get current page of items
@@ -56,7 +56,7 @@ export class BooksComponent implements OnInit {
   sortData(sort: Sort) {
       const data = this.books.slice();
       const orig = data.slice();
-      if(!sort.active || sort.direction === ''){
+      if (!sort.active || sort.direction === '') {
         this.setPage();
         return;
       }
@@ -65,9 +65,12 @@ export class BooksComponent implements OnInit {
           const isAsc = sort.direction === 'asc';
           switch (sort.active) {
             case 'title' : return this.compare(a.title, b.title, isAsc);
-            case 'author' : return this.compare(a.author_last + ' ' + a.author_first + ' '+ a.series_num, b.author_last + ' ' + b.author_first + ' ' + b.series_num, isAsc);
-            case 'format' : return this.compare(a.format + ' ' + a.author_last + ' ' + a.author_first+ ' '+a.series_num, b.format + ' '+ b.author_last + ' ' + b.author_first+ ' ' + b.series_num, isAsc);
-            case 'series' : return this.compare(a.series + ' ' + a.author_last + ' ' + a.author_first + ' ' + a.series_num, b.series + ' ' + b.author_last + ' ' + b.author_first + ' ' + b.series_num, isAsc);
+            case 'author' : return this.compare(a.author_last + ' ' + a.author_first + ' '
+                + a.series_num, b.author_last + ' ' + b.author_first + ' ' + b.series_num, isAsc);
+            case 'format' : return this.compare(a.format + ' ' + a.author_last + ' ' + a.author_first + ' '
+                + a.series_num, b.format + ' ' + b.author_last + ' ' + b.author_first + ' ' + b.series_num, isAsc);
+            case 'series' : return this.compare(a.series + ' ' + a.author_last + ' ' + a.author_first + ' '
+                + a.series_num, b.series + ' ' + b.author_last + ' ' + b.author_first + ' ' + b.series_num, isAsc);
             default: return 0;
           }
       });
@@ -79,12 +82,26 @@ export class BooksComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  applyFilter(filterValue: string){
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   editBook(row) {
     console.log(row);
+  }
+
+  deleteBook(id) {
+      if (confirm('ALERT: Are you sure to delete this book?')) {
+          this.bookService.removeBook(id).subscribe(data => {
+          }, data => {
+              console.log('error');
+          }, () => {
+              console.log('deleted');
+              this.books = [];
+              this.isLoading = true;
+              this.getBooks();
+          });
+      }
   }
 
 

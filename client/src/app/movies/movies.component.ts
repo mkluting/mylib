@@ -5,12 +5,12 @@ import { Location } from '@angular/common';
 import { Movie } from '../../models/movie';
 import { MovieService } from '../movie.service';
 import { PagerService } from '../pager.service';
-import { MatTableDataSource, PageEvent, Sort} from "@angular/material";
+import { MatTableDataSource, PageEvent, Sort} from '@angular/material';
 
 @Component({
     selector: 'app-movies',
     templateUrl: './movies.component.html',
-    styleUrls: ['./movies.component.css']
+    styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
 

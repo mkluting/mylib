@@ -10,6 +10,6 @@
        routerLinkActive #rla="routerLinkActive"
        [active]="rla.isActive"
     >
-        <i class="material-icons">{{ routeLink.icon }}</i><span [fxHide.xs]="true">{{ routeLink.label }}</span>
+        <mat-icon class="nav-icon">{{ routeLink.icon }}</mat-icon><span [fxHide.xs]="true">{{ routeLink.label }}</span>
     </a>
 </nav>

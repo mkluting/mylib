@@ -16,6 +16,8 @@ import {
     MatSortModule,
     MatToolbarModule,
     MatTabsModule,
+    MatIconModule,
+    MatMenuModule,
     MatSelectModule, MatListModule
 } from '@angular/material';
 
@@ -72,13 +74,15 @@ import { AccountCreateComponent } from './account-create/account-create.componen
     MatSelectModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatIconModule,
     MatPaginatorModule,
     MatSortModule,
-      MatListModule,
+    MatListModule,
     MatTabsModule,
-      MatToolbarModule,
+    MatMenuModule,
+    MatToolbarModule,
     MatButtonModule,
-      FlexLayoutModule
+    FlexLayoutModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -90,11 +94,13 @@ import { AccountCreateComponent } from './account-create/account-create.componen
     MatCardModule,
     MatPaginatorModule,
     MatSortModule,
+    MatIconModule,
     MatTabsModule,
-      MatListModule,
-      MatToolbarModule,
+    MatMenuModule,
+    MatListModule,
+    MatToolbarModule,
     MatButtonModule,
-      FlexLayoutModule
+    FlexLayoutModule
   ],
   providers: [ BookService, MovieService, MessageService, CoverService, PagerService, UserService, AuthService ],
   bootstrap: [ AppComponent ]

@@ -20,7 +20,7 @@
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.3.0",
     "mysql": "^2.16.0",
-    "swagger-ui": "^3.19.4",
+    "swagger-ui": "^3.23.11",
     "swagger-ui-dist": "^3.19.4",
     "swagger-ui-express": "^4.0.1"
   }
